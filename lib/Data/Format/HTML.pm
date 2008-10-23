@@ -139,6 +139,10 @@ Extend this documentation.
 
 =back
 
+=head1 SEE MORE
+
+The author keeps the versioned code at GitHub at: L<http://github.com/damog/data-format-html/tree/master>.
+
 =head1 AUTHOR
 
 David Moreno Garza, E<lt>david@axiombox.comE<gt> - L<http://damog.net/>
