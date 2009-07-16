@@ -5,7 +5,7 @@ package Data::Format::HTML;
 use strict;
 use warnings;
 
-our $VERSION = '0.3';
+our $VERSION = '0.4.4';
 
 =head1 NAME
 
@@ -220,6 +220,8 @@ sub _format_hash {
 	while(my($k, $v) = each %{$hash}) {
 		$k = $self->_format($k) if ref $k;
 		$v = $self->_format($v) if ref $v;
+		$v = '' unless defined $v;
+		
 		$o .= "<tr><th>$k</th><td>$v</td></tr>\n";
 	}
 	
