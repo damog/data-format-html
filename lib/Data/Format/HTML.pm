@@ -5,7 +5,7 @@ package Data::Format::HTML;
 use strict;
 use warnings;
 
-our $VERSION = '0.4.4';
+our $VERSION = '0.5';
 
 =head1 NAME
 
