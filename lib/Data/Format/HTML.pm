@@ -5,7 +5,7 @@ package Data::Format::HTML;
 use strict;
 use warnings;
 
-our $VERSION = '0.5';
+our $VERSION = '0.5.1';
 
 =head1 NAME
 
@@ -37,7 +37,7 @@ Data::Format::HTML - Format Perl data structures into simple HTML
  
  $struct->{'Data::Format::HTML handles it all'} = $f;
  
- print $f->format();
+ print $f->format( $struct );
  
 And that will output the following insane, but possible, for the sake
 of showing, HTML:
@@ -145,16 +145,11 @@ The author keeps the versioned code at GitHub at: L<http://github.com/damog/data
 
 =head1 AUTHOR
 
-David Moreno Garza, E<lt>david@axiombox.comE<gt> - L<http://damog.net/>
-
-=head1 THANKS
-
-To Raquel (L<http://www.maggit.com.mx/>), who makes me happy every single
-day of my life.
+David Moreno, E<lt>david@axiombox.comE<gt> - L<http://damog.net/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2008 by David Moreno Garza
+Copyright (C) 2012 by David Moreno
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.8 or,
@@ -165,7 +160,7 @@ really up to you.
 
 =cut
 
-use Switch 'Perl6';
+use feature "switch";
 use Data::Dumper;
 use HTML::Entities;
 
@@ -194,14 +189,14 @@ sub format {
 
 sub _format {
 	my($self, $var) = @_;
-		
+			
 	given (ref $var) {
-		when 'SCALAR'		{ return $self->_format_scalar($var); }
-		when 'ARRAY'		{ return $self->_format_array($var); }
-		when 'HASH'			{ return $self->_format_hash($var); }
-		when 'CODE'			{ return $self->_format_code($var); }
+		when ('SCALAR')		{ return $self->_format_scalar($var); }
+		when ('ARRAY')		{ return $self->_format_array($var); }
+		when ('HASH')			{ return $self->_format_hash($var); }
+		when ('CODE')			{ return $self->_format_code($var); }
 #		when 'REF'			{ return $self->_format_ref($var); }
-		when ''				{ return $self->_format_scalar(\$var); }
+		when ('')			{ return $self->_format_scalar(\$var); }
 		default			 	{ return $self->_format_scalar(\$var); }
 	}
 }
